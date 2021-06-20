@@ -17,12 +17,14 @@ public class JSONSubConfig {
     public JSONSubConfig(String keyName, JSONConfig parent) throws IOException {
         name = keyName;
         parentConfig = parent;
+        setVerbose(false);
         init();
     }
 
     public JSONSubConfig(String keyName, JSONSubConfig parent) throws IOException {
         name = keyName;
         parentConfig = parent;
+        setVerbose(false);
         init();
     }
 

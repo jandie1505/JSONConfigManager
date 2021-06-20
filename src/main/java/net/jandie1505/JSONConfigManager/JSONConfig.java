@@ -19,7 +19,7 @@ public class JSONConfig {
      */
     public JSONConfig(String filePath) throws IOException {
         jsonFile = new File(filePath);
-        setVerbose(true);
+        setVerbose(false);
         init();
     }
 
@@ -29,7 +29,7 @@ public class JSONConfig {
      */
     public JSONConfig(File file) throws IOException {
         jsonFile = file;
-        setVerbose(true);
+        setVerbose(false);
         init();
     }
 
