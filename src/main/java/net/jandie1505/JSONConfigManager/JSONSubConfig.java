@@ -105,23 +105,23 @@ public class JSONSubConfig {
         JSONObject jsonObject = load();
         return jsonObject.get(key);
     }
-    public Object getString(String key) throws IOException {
+    public String getString(String key) throws IOException {
         JSONObject jsonObject = load();
         return jsonObject.getString(key);
     }
-    public Object getInt(String key) throws IOException {
+    public int getInt(String key) throws IOException {
         JSONObject jsonObject = load();
         return jsonObject.getInt(key);
     }
-    public Object getBoolean(String key) throws IOException {
+    public boolean getBoolean(String key) throws IOException {
         JSONObject jsonObject = load();
         return jsonObject.getBoolean(key);
     }
-    public Object getFloat(String key) throws IOException {
+    public float getFloat(String key) throws IOException {
         JSONObject jsonObject = load();
         return jsonObject.getFloat(key);
     }
-    public Object getDouble(String key) throws IOException {
+    public double getDouble(String key) throws IOException {
         JSONObject jsonObject = load();
         return jsonObject.getDouble(key);
     }
