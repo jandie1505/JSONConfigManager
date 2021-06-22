@@ -156,9 +156,25 @@ public class JSONSubConfig {
     }
 
     private void init() throws IOException {
-        JSONObject jsonObject = new JSONObject();
-        save(jsonObject);
-        verbose("Subconfig initialized");
+        if(parentConfig instanceof JSONConfig){
+            if(!((JSONConfig) parentConfig).has(name)){
+                JSONObject jsonObject = new JSONObject();
+                save(jsonObject);
+            } else {
+                JSONObject jsonObject = load();
+                save(jsonObject);
+            }
+        } else if(parentConfig instanceof JSONSubConfig){
+            if(!((JSONSubConfig) parentConfig).has(name)){
+                JSONObject jsonObject = new JSONObject();
+                save(jsonObject);
+            } else {
+                JSONObject jsonObject = load();
+                save(jsonObject);
+            }
+        } else {
+            message("An error occured while setting up the JSONConfig");
+        }
     }
 
     private JSONObject load() throws IOException {
