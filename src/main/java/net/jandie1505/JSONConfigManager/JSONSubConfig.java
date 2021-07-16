@@ -148,6 +148,52 @@ public class JSONSubConfig {
     }
 
     /**
+     * Removes a key from the JSONConfig.
+     * @param key
+     * @throws IOException
+     */
+    public void remove(String key) throws IOException {
+        JSONObject jsonObject = load();
+        jsonObject.remove(key);
+        save(jsonObject);
+    }
+
+    /**
+     * Returns the JSONObject as a String.
+     * @return String
+     */
+    @Override
+    public String toString(){
+        JSONObject jsonObject = null;
+        try {
+            jsonObject = load();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return jsonObject.toString();
+    }
+
+    /**
+     * Returns an Array with the keys in it (for for each loops).
+     * @return Object[] keyArray
+     * @throws IOException
+     */
+    public Object[] getKeyArray() throws IOException {
+        JSONObject jsonObject = load();
+        return jsonObject.keySet().toArray();
+    }
+
+    /**
+     * Clears the JSONConfig.
+     * @throws IOException
+     */
+    public void clear() throws IOException {
+        JSONObject jsonObject = load();
+        jsonObject.clear();
+        save(jsonObject);
+    }
+
+    /**
      * Enable/Disable verbose logging.
      * @param verbose
      */
