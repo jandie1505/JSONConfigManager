@@ -36,6 +36,11 @@ public class JSONSubConfig {
         return parentConfig;
     }
 
+    /**
+     * Get the JSONObject of the JSONConfig
+     * @return JSONObject
+     * @throws IOException
+     */
     public JSONObject getJSONObject() throws IOException {
         return load();
     }
@@ -45,8 +50,19 @@ public class JSONSubConfig {
      * Not recommended to use this.
      * @param jsonObject
      * @throws IOException
+     * @deprecated Use overrideJSONObject instead
      */
+    @Deprecated
     public void setJSONObject(JSONObject jsonObject) throws IOException {
+        save(jsonObject);
+    }
+    /**
+     * Override the JSONObject.
+     * Not recommended to use this.
+     * @param jsonObject
+     * @throws IOException
+     */
+    public void overrideJSONObject(JSONObject jsonObject) throws IOException {
         save(jsonObject);
     }
 
@@ -96,6 +112,11 @@ public class JSONSubConfig {
         save(jsonObject);
     }
     public void put(String key, JSONObject value) throws IOException {
+        JSONObject jsonObject = load();
+        jsonObject.put(key, value);
+        save(jsonObject);
+    }
+    public void put(String key, JSONArray value) throws IOException {
         JSONObject jsonObject = load();
         jsonObject.put(key, value);
         save(jsonObject);
