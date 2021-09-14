@@ -17,9 +17,16 @@ public class JSONRawConfig {
      * Creates JSONConfig by File Object
      * @throws IOException
      */
-    public JSONRawConfig() throws IOException {
+    public JSONRawConfig() {
         setVerbose(false);
         init();
+    }
+    
+    public JSONRawConfig(String jsonString) {
+        setVerbose(false);
+        init();
+        JSONObject jsonObject = new JSONObject(jsonString);
+        save(jsonObject);
     }
 
     /**
@@ -35,7 +42,7 @@ public class JSONRawConfig {
      * @return JSONObject
      * @throws IOException
      */
-    public JSONObject getJSONObject() throws IOException {
+    public JSONObject getJSONObject() {
         return load();
     }
 
@@ -47,7 +54,7 @@ public class JSONRawConfig {
      * @deprecated Use overrideJSONObject instead
      */
     @Deprecated
-    public void setJSONObject(JSONObject jsonObject) throws IOException {
+    public void setJSONObject(JSONObject jsonObject) {
         save(jsonObject);
     }
     /**
@@ -56,108 +63,108 @@ public class JSONRawConfig {
      * @param jsonObject
      * @throws IOException
      */
-    public void overrideJSONObject(JSONObject jsonObject) throws IOException {
+    public void overrideJSONObject(JSONObject jsonObject) {
         save(jsonObject);
     }
 
-    public void put(String key, Object value) throws IOException {
+    public void put(String key, Object value) {
         JSONObject jsonObject = load();
         jsonObject.put(key, value);
         save(jsonObject);
     }
-    public void put(String key, int value) throws IOException {
+    public void put(String key, int value) {
         JSONObject jsonObject = load();
         jsonObject.put(key, value);
         save(jsonObject);
     }
-    public void put(String key, boolean value) throws IOException {
+    public void put(String key, boolean value) {
         JSONObject jsonObject = load();
         jsonObject.put(key, value);
         save(jsonObject);
     }
-    public void put(String key, String value) throws IOException {
+    public void put(String key, String value) {
         JSONObject jsonObject = load();
         jsonObject.put(key, value);
         save(jsonObject);
     }
-    public void put(String key, double value) throws IOException {
+    public void put(String key, double value) {
         JSONObject jsonObject = load();
         jsonObject.put(key, value);
         save(jsonObject);
     }
-    public void put(String key, long value) throws IOException {
+    public void put(String key, long value) {
         JSONObject jsonObject = load();
         jsonObject.put(key, value);
         save(jsonObject);
     }
-    public void put(String key, float value) throws IOException {
+    public void put(String key, float value) {
         JSONObject jsonObject = load();
         jsonObject.put(key, value);
         save(jsonObject);
     }
-    public void put(String key, Map value) throws IOException {
+    public void put(String key, Map value) {
         JSONObject jsonObject = load();
         jsonObject.put(key, value);
         save(jsonObject);
     }
-    public void put(String key, Collection value) throws IOException {
+    public void put(String key, Collection value) {
         JSONObject jsonObject = load();
         jsonObject.put(key, value);
         save(jsonObject);
     }
-    public void put(String key, JSONObject value) throws IOException {
+    public void put(String key, JSONObject value) {
         JSONObject jsonObject = load();
         jsonObject.put(key, value);
         save(jsonObject);
     }
-    public void put(String key, JSONArray value) throws IOException {
+    public void put(String key, JSONArray value) {
         JSONObject jsonObject = load();
         jsonObject.put(key, value);
         save(jsonObject);
     }
 
-    public Object get(String key) throws IOException {
+    public Object get(String key) {
         JSONObject jsonObject = load();
         return jsonObject.get(key);
     }
-    public String getString(String key) throws IOException {
+    public String getString(String key) {
         JSONObject jsonObject = load();
         return jsonObject.getString(key);
     }
-    public int getInt(String key) throws IOException {
+    public int getInt(String key) {
         JSONObject jsonObject = load();
         return jsonObject.getInt(key);
     }
-    public boolean getBoolean(String key) throws IOException {
+    public boolean getBoolean(String key) {
         JSONObject jsonObject = load();
         return jsonObject.getBoolean(key);
     }
-    public float getFloat(String key) throws IOException {
+    public float getFloat(String key) {
         JSONObject jsonObject = load();
         return jsonObject.getFloat(key);
     }
-    public double getDouble(String key) throws IOException {
+    public double getDouble(String key) {
         JSONObject jsonObject = load();
         return jsonObject.getDouble(key);
     }
-    public JSONArray getJSONArray(String key) throws IOException {
+    public JSONArray getJSONArray(String key) {
         JSONObject jsonObject = load();
         return jsonObject.getJSONArray(key);
     }
-    public BigDecimal getBigDecimal(String key) throws IOException {
+    public BigDecimal getBigDecimal(String key) {
         JSONObject jsonObject = load();
         return jsonObject.getBigDecimal(key);
     }
-    public BigInteger getBigInteger(String key) throws IOException {
+    public BigInteger getBigInteger(String key) {
         JSONObject jsonObject = load();
         return jsonObject.getBigInteger(key);
     }
-    public JSONObject getJSONObject(String key) throws IOException {
+    public JSONObject getJSONObject(String key) {
         JSONObject jsonObject = load();
         return jsonObject.getJSONObject(key);
     }
 
-    public boolean has(String key) throws IOException {
+    public boolean has(String key) {
         JSONObject jsonObject = load();
         return jsonObject.has(key);
     }
@@ -167,7 +174,7 @@ public class JSONRawConfig {
      * @param key
      * @throws IOException
      */
-    public void remove(String key) throws IOException {
+    public void remove(String key) {
         JSONObject jsonObject = load();
         jsonObject.remove(key);
         save(jsonObject);
@@ -180,11 +187,7 @@ public class JSONRawConfig {
     @Override
     public String toString(){
         JSONObject jsonObject = null;
-        try {
-            jsonObject = load();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        jsonObject = load();
         return jsonObject.toString();
     }
 
@@ -193,7 +196,7 @@ public class JSONRawConfig {
      * @return Object[] keyArray
      * @throws IOException
      */
-    public Object[] getKeyArray() throws IOException {
+    public Object[] getKeyArray() {
         JSONObject jsonObject = load();
         return jsonObject.keySet().toArray();
     }
@@ -202,7 +205,7 @@ public class JSONRawConfig {
      * Clears the JSONConfig.
      * @throws IOException
      */
-    public void clear() throws IOException {
+    public void clear() {
         JSONObject jsonObject = load();
         jsonObject.clear();
         save(jsonObject);
@@ -216,20 +219,20 @@ public class JSONRawConfig {
         verboseLogging = verbose;
     }
 
-    private void init() throws IOException {
+    private void init() {
         JSONObject jsonObject = new JSONObject();
         jsonString = jsonObject.toString();
         load();
         verbose("Initialized JSONConfig");
     }
 
-    private JSONObject load() throws IOException {
+    private JSONObject load() {
         JSONObject jsonObject = new JSONObject(jsonString);
         verbose("Loaded JSON String");
         return jsonObject;
     }
 
-    private void save(JSONObject jsonObject) throws IOException {
+    private void save(JSONObject jsonObject) {
         jsonString = jsonObject.toString();
         verbose("Saved JSON String");
     }

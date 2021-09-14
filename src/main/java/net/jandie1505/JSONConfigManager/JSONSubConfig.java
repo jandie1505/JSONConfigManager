@@ -14,6 +14,12 @@ public class JSONSubConfig {
     private Object parentConfig;
     private boolean verboseLogging;
 
+    /**
+     * Initialize JSONSubConfig with a JSONConfig as parent config
+     * @param keyName
+     * @param parent
+     * @throws IOException
+     */
     public JSONSubConfig(String keyName, JSONConfig parent) throws IOException {
         name = keyName;
         parentConfig = parent;
@@ -21,7 +27,26 @@ public class JSONSubConfig {
         init();
     }
 
+    /**
+     * Initialize JSONSubConfig with another JSONSubConfig as parent config
+     * @param keyName
+     * @param parent
+     * @throws IOException
+     */
     public JSONSubConfig(String keyName, JSONSubConfig parent) throws IOException {
+        name = keyName;
+        parentConfig = parent;
+        setVerbose(false);
+        init();
+    }
+
+    /**
+     * Initialize JSONSubConfig with a JSONRawConfig as parent config
+     * @param keyName
+     * @param parent
+     * @throws IOException
+     */
+    public JSONSubConfig(String keyName, JSONRawConfig parent) throws IOException {
         name = keyName;
         parentConfig = parent;
         setVerbose(false);
@@ -223,16 +248,24 @@ public class JSONSubConfig {
     }
 
     private void init() throws IOException {
-        if(parentConfig instanceof JSONConfig){
-            if(!((JSONConfig) parentConfig).has(name)){
+        if(parentConfig instanceof JSONConfig) {
+            if(!((JSONConfig) parentConfig).has(name)) {
                 JSONObject jsonObject = new JSONObject();
                 save(jsonObject);
             } else {
                 JSONObject jsonObject = load();
                 save(jsonObject);
             }
-        } else if(parentConfig instanceof JSONSubConfig){
-            if(!((JSONSubConfig) parentConfig).has(name)){
+        } else if(parentConfig instanceof JSONSubConfig) {
+            if(!((JSONSubConfig) parentConfig).has(name)) {
+                JSONObject jsonObject = new JSONObject();
+                save(jsonObject);
+            } else {
+                JSONObject jsonObject = load();
+                save(jsonObject);
+            }
+        } else if(parentConfig instanceof JSONRawConfig) {
+            if(!((JSONRawConfig) parentConfig).has(name)) {
                 JSONObject jsonObject = new JSONObject();
                 save(jsonObject);
             } else {
@@ -251,6 +284,9 @@ public class JSONSubConfig {
         } else if(parentConfig instanceof JSONSubConfig) {
             verbose("Loaded subconfig");
             return ((JSONSubConfig) parentConfig).getJSONObject(name);
+        } else if(parentConfig instanceof JSONRawConfig) {
+            verbose("Loaded subconfig");
+            return ((JSONRawConfig) parentConfig).getJSONObject(name);
         } else {
             verbose("An error occured while loading the subconfig");
             return null;
@@ -263,6 +299,9 @@ public class JSONSubConfig {
             verbose("Saved subconfig");
         } else if(parentConfig instanceof JSONSubConfig){
             ((JSONSubConfig) parentConfig).put(name, jsonObject);
+            verbose("Saved subconfig");
+        } else if(parentConfig instanceof JSONRawConfig) {
+            ((JSONRawConfig) parentConfig).put(name, jsonObject);
             verbose("Saved subconfig");
         } else {
             verbose("An error occured while saving the subconfig");
