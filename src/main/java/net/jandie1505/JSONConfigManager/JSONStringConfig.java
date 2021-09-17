@@ -3,26 +3,28 @@ package net.jandie1505.JSONConfigManager;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import java.io.*;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.Collection;
 import java.util.Map;
 
-public class JSONRawConfig {
+public class JSONStringConfig {
     private boolean verboseLogging;
     private String jsonString;
 
     /**
-     * Creates JSONConfig by File Object
-     * @throws IOException
+     * Creates empty JSONStringConfig
      */
-    public JSONRawConfig() {
+    public JSONStringConfig() {
         setVerbose(false);
         init();
     }
-    
-    public JSONRawConfig(String jsonString) {
+
+    /**
+     * Created JSONStringConfig by existing JSON String
+     * @param jsonString
+     */
+    public JSONStringConfig(String jsonString) {
         setVerbose(false);
         init();
         JSONObject jsonObject = new JSONObject(jsonString);
@@ -38,9 +40,17 @@ public class JSONRawConfig {
     }
 
     /**
+     * Set string of the JSONStringConfig. This will override the entire saved JSON String.
+     * @param json
+     */
+    @Deprecated
+    public void setJsonString(String json) {
+        jsonString = json;
+    }
+
+    /**
      * Get the JSONObject of the JSONConfig
      * @return JSONObject
-     * @throws IOException
      */
     public JSONObject getJSONObject() {
         return load();
@@ -50,7 +60,6 @@ public class JSONRawConfig {
      * Override the JSONObject.
      * Not recommended to use this.
      * @param jsonObject
-     * @throws IOException
      * @deprecated Use overrideJSONObject instead
      */
     @Deprecated
@@ -61,7 +70,6 @@ public class JSONRawConfig {
      * Override the JSONObject.
      * Not recommended to use this.
      * @param jsonObject
-     * @throws IOException
      */
     public void overrideJSONObject(JSONObject jsonObject) {
         save(jsonObject);
@@ -172,7 +180,6 @@ public class JSONRawConfig {
     /**
      * Removes a key from the JSONConfig.
      * @param key
-     * @throws IOException
      */
     public void remove(String key) {
         JSONObject jsonObject = load();
@@ -194,7 +201,6 @@ public class JSONRawConfig {
     /**
      * Returns an Array with the keys in it (for for each loops).
      * @return Object[] keyArray
-     * @throws IOException
      */
     public Object[] getKeyArray() {
         JSONObject jsonObject = load();
@@ -203,7 +209,6 @@ public class JSONRawConfig {
 
     /**
      * Clears the JSONConfig.
-     * @throws IOException
      */
     public void clear() {
         JSONObject jsonObject = load();

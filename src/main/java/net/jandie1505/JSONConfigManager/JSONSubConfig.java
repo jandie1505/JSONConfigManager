@@ -18,9 +18,9 @@ public class JSONSubConfig {
      * Initialize JSONSubConfig with a JSONConfig as parent config
      * @param keyName
      * @param parent
-     * @throws IOException
+
      */
-    public JSONSubConfig(String keyName, JSONConfig parent) throws IOException {
+    public JSONSubConfig(String keyName, JSONFileConfig parent) {
         name = keyName;
         parentConfig = parent;
         setVerbose(false);
@@ -31,9 +31,8 @@ public class JSONSubConfig {
      * Initialize JSONSubConfig with another JSONSubConfig as parent config
      * @param keyName
      * @param parent
-     * @throws IOException
      */
-    public JSONSubConfig(String keyName, JSONSubConfig parent) throws IOException {
+    public JSONSubConfig(String keyName, JSONSubConfig parent) {
         name = keyName;
         parentConfig = parent;
         setVerbose(false);
@@ -41,12 +40,11 @@ public class JSONSubConfig {
     }
 
     /**
-     * Initialize JSONSubConfig with a JSONRawConfig as parent config
+     * Initialize JSONSubConfig with a JSONStringConfig as parent config
      * @param keyName
      * @param parent
-     * @throws IOException
      */
-    public JSONSubConfig(String keyName, JSONRawConfig parent) throws IOException {
+    public JSONSubConfig(String keyName, JSONStringConfig parent) {
         name = keyName;
         parentConfig = parent;
         setVerbose(false);
@@ -64,9 +62,8 @@ public class JSONSubConfig {
     /**
      * Get the JSONObject of the JSONConfig
      * @return JSONObject
-     * @throws IOException
      */
-    public JSONObject getJSONObject() throws IOException {
+    public JSONObject getJSONObject() {
         return load();
     }
 
@@ -74,121 +71,119 @@ public class JSONSubConfig {
      * Override the JSONObject.
      * Not recommended to use this.
      * @param jsonObject
-     * @throws IOException
      * @deprecated Use overrideJSONObject instead
      */
     @Deprecated
-    public void setJSONObject(JSONObject jsonObject) throws IOException {
+    public void setJSONObject(JSONObject jsonObject) {
         save(jsonObject);
     }
     /**
      * Override the JSONObject.
      * Not recommended to use this.
      * @param jsonObject
-     * @throws IOException
      */
-    public void overrideJSONObject(JSONObject jsonObject) throws IOException {
+    public void overrideJSONObject(JSONObject jsonObject) {
         save(jsonObject);
     }
 
-    public void put(String key, Object value) throws IOException {
+    public void put(String key, Object value) {
         JSONObject jsonObject = load();
         jsonObject.put(key, value);
         save(jsonObject);
     }
-    public void put(String key, int value) throws IOException {
+    public void put(String key, int value) {
         JSONObject jsonObject = load();
         jsonObject.put(key, value);
         save(jsonObject);
     }
-    public void put(String key, boolean value) throws IOException {
+    public void put(String key, boolean value) {
         JSONObject jsonObject = load();
         jsonObject.put(key, value);
         save(jsonObject);
     }
-    public void put(String key, String value) throws IOException {
+    public void put(String key, String value) {
         JSONObject jsonObject = load();
         jsonObject.put(key, value);
         save(jsonObject);
     }
-    public void put(String key, double value) throws IOException {
+    public void put(String key, double value) {
         JSONObject jsonObject = load();
         jsonObject.put(key, value);
         save(jsonObject);
     }
-    public void put(String key, long value) throws IOException {
+    public void put(String key, long value) {
         JSONObject jsonObject = load();
         jsonObject.put(key, value);
         save(jsonObject);
     }
-    public void put(String key, float value) throws IOException {
+    public void put(String key, float value) {
         JSONObject jsonObject = load();
         jsonObject.put(key, value);
         save(jsonObject);
     }
-    public void put(String key, Map value) throws IOException {
+    public void put(String key, Map value) {
         JSONObject jsonObject = load();
         jsonObject.put(key, value);
         save(jsonObject);
     }
-    public void put(String key, Collection value) throws IOException {
+    public void put(String key, Collection value) {
         JSONObject jsonObject = load();
         jsonObject.put(key, value);
         save(jsonObject);
     }
-    public void put(String key, JSONObject value) throws IOException {
+    public void put(String key, JSONObject value) {
         JSONObject jsonObject = load();
         jsonObject.put(key, value);
         save(jsonObject);
     }
-    public void put(String key, JSONArray value) throws IOException {
+    public void put(String key, JSONArray value) {
         JSONObject jsonObject = load();
         jsonObject.put(key, value);
         save(jsonObject);
     }
 
-    public Object get(String key) throws IOException {
+    public Object get(String key) {
         JSONObject jsonObject = load();
         return jsonObject.get(key);
     }
-    public String getString(String key) throws IOException {
+    public String getString(String key) {
         JSONObject jsonObject = load();
         return jsonObject.getString(key);
     }
-    public int getInt(String key) throws IOException {
+    public int getInt(String key) {
         JSONObject jsonObject = load();
         return jsonObject.getInt(key);
     }
-    public boolean getBoolean(String key) throws IOException {
+    public boolean getBoolean(String key) {
         JSONObject jsonObject = load();
         return jsonObject.getBoolean(key);
     }
-    public float getFloat(String key) throws IOException {
+    public float getFloat(String key) {
         JSONObject jsonObject = load();
         return jsonObject.getFloat(key);
     }
-    public double getDouble(String key) throws IOException {
+    public double getDouble(String key) {
         JSONObject jsonObject = load();
         return jsonObject.getDouble(key);
     }
-    public JSONArray getJSONArray(String key) throws IOException {
+    public JSONArray getJSONArray(String key) {
         JSONObject jsonObject = load();
         return jsonObject.getJSONArray(key);
     }
-    public BigDecimal getBigDecimal(String key) throws IOException {
+    public BigDecimal getBigDecimal(String key) {
         JSONObject jsonObject = load();
         return jsonObject.getBigDecimal(key);
     }
-    public BigInteger getBigInteger(String key) throws IOException {
+    public BigInteger getBigInteger(String key) {
         JSONObject jsonObject = load();
         return jsonObject.getBigInteger(key);
     }
-    public JSONObject getJSONObject(String key) throws IOException {
+    public JSONObject getJSONObject(String key) {
         JSONObject jsonObject = load();
         return jsonObject.getJSONObject(key);
     }
 
-    public boolean has(String key) throws IOException {
+    public boolean has(String key) {
         JSONObject jsonObject = load();
         return jsonObject.has(key);
     }
@@ -196,9 +191,8 @@ public class JSONSubConfig {
     /**
      * Removes a key from the JSONConfig.
      * @param key
-     * @throws IOException
      */
-    public void remove(String key) throws IOException {
+    public void remove(String key) {
         JSONObject jsonObject = load();
         jsonObject.remove(key);
         save(jsonObject);
@@ -211,29 +205,24 @@ public class JSONSubConfig {
     @Override
     public String toString(){
         JSONObject jsonObject = null;
-        try {
-            jsonObject = load();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        jsonObject = load();
+
         return jsonObject.toString();
     }
 
     /**
      * Returns an Array with the keys in it (for for each loops).
      * @return Object[] keyArray
-     * @throws IOException
      */
-    public Object[] getKeyArray() throws IOException {
+    public Object[] getKeyArray() {
         JSONObject jsonObject = load();
         return jsonObject.keySet().toArray();
     }
 
     /**
      * Clears the JSONConfig.
-     * @throws IOException
      */
-    public void clear() throws IOException {
+    public void clear() {
         JSONObject jsonObject = load();
         jsonObject.clear();
         save(jsonObject);
@@ -247,64 +236,80 @@ public class JSONSubConfig {
         verboseLogging = verbose;
     }
 
-    private void init() throws IOException {
-        if(parentConfig instanceof JSONConfig) {
-            if(!((JSONConfig) parentConfig).has(name)) {
-                JSONObject jsonObject = new JSONObject();
-                save(jsonObject);
+    private void init() {
+        try {
+            if(parentConfig instanceof JSONFileConfig) {
+                if(!((JSONFileConfig) parentConfig).has(name)) {
+                    JSONObject jsonObject = new JSONObject();
+                    save(jsonObject);
+                } else {
+                    JSONObject jsonObject = load();
+                    save(jsonObject);
+                }
+            } else if(parentConfig instanceof JSONSubConfig) {
+                if(!((JSONSubConfig) parentConfig).has(name)) {
+                    JSONObject jsonObject = new JSONObject();
+                    save(jsonObject);
+                } else {
+                    JSONObject jsonObject = load();
+                    save(jsonObject);
+                }
+            } else if(parentConfig instanceof JSONStringConfig) {
+                if(!((JSONStringConfig) parentConfig).has(name)) {
+                    JSONObject jsonObject = new JSONObject();
+                    save(jsonObject);
+                } else {
+                    JSONObject jsonObject = load();
+                    save(jsonObject);
+                }
             } else {
-                JSONObject jsonObject = load();
-                save(jsonObject);
+                message("An error occured while setting up the JSONConfig");
             }
-        } else if(parentConfig instanceof JSONSubConfig) {
-            if(!((JSONSubConfig) parentConfig).has(name)) {
-                JSONObject jsonObject = new JSONObject();
-                save(jsonObject);
-            } else {
-                JSONObject jsonObject = load();
-                save(jsonObject);
-            }
-        } else if(parentConfig instanceof JSONRawConfig) {
-            if(!((JSONRawConfig) parentConfig).has(name)) {
-                JSONObject jsonObject = new JSONObject();
-                save(jsonObject);
-            } else {
-                JSONObject jsonObject = load();
-                save(jsonObject);
-            }
-        } else {
-            message("An error occured while setting up the JSONConfig");
+        } catch(IOException e) {
+            System.out.println("IOException in JSONSubConfig");
+            e.printStackTrace();
         }
     }
 
-    private JSONObject load() throws IOException {
-        if(parentConfig instanceof JSONConfig) {
-            verbose("Loaded subconfig");
-            return ((JSONConfig) parentConfig).getJSONObject(name);
-        } else if(parentConfig instanceof JSONSubConfig) {
-            verbose("Loaded subconfig");
-            return ((JSONSubConfig) parentConfig).getJSONObject(name);
-        } else if(parentConfig instanceof JSONRawConfig) {
-            verbose("Loaded subconfig");
-            return ((JSONRawConfig) parentConfig).getJSONObject(name);
-        } else {
-            verbose("An error occured while loading the subconfig");
-            return null;
+    private JSONObject load() {
+        try {
+            if(parentConfig instanceof JSONFileConfig) {
+                verbose("Loaded subconfig");
+                return ((JSONFileConfig) parentConfig).getJSONObject(name);
+            } else if(parentConfig instanceof JSONSubConfig) {
+                verbose("Loaded subconfig");
+                return ((JSONSubConfig) parentConfig).getJSONObject(name);
+            } else if(parentConfig instanceof JSONStringConfig) {
+                verbose("Loaded subconfig");
+                return ((JSONStringConfig) parentConfig).getJSONObject(name);
+            } else {
+                verbose("An error occured while loading the subconfig");
+                return null;
+            }
+        } catch(IOException e) {
+            System.out.println("IOException in JSONSubConfig");
+            e.printStackTrace();
         }
+        return null;
     }
 
-    private void save(JSONObject jsonObject) throws IOException {
-        if(parentConfig instanceof JSONConfig){
-            ((JSONConfig) parentConfig).put(name, jsonObject);
-            verbose("Saved subconfig");
-        } else if(parentConfig instanceof JSONSubConfig){
-            ((JSONSubConfig) parentConfig).put(name, jsonObject);
-            verbose("Saved subconfig");
-        } else if(parentConfig instanceof JSONRawConfig) {
-            ((JSONRawConfig) parentConfig).put(name, jsonObject);
-            verbose("Saved subconfig");
-        } else {
-            verbose("An error occured while saving the subconfig");
+    private void save(JSONObject jsonObject) {
+        try {
+            if(parentConfig instanceof JSONFileConfig){
+                ((JSONFileConfig) parentConfig).put(name, jsonObject);
+                verbose("Saved subconfig");
+            } else if(parentConfig instanceof JSONSubConfig){
+                ((JSONSubConfig) parentConfig).put(name, jsonObject);
+                verbose("Saved subconfig");
+            } else if(parentConfig instanceof JSONStringConfig) {
+                ((JSONStringConfig) parentConfig).put(name, jsonObject);
+                verbose("Saved subconfig");
+            } else {
+                verbose("An error occured while saving the subconfig");
+            }
+        } catch(Exception e) {
+            System.out.println("IOException in JSONSubConfig");
+            e.printStackTrace();
         }
     }
 

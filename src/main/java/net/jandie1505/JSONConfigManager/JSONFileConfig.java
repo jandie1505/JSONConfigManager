@@ -9,25 +9,25 @@ import java.math.BigInteger;
 import java.util.Collection;
 import java.util.Map;
 
-public class JSONConfig {
+public class JSONFileConfig {
     private File jsonFile;
     private boolean verboseLogging;
 
     /**
-     * Creates JSONConfig by String path name
+     * Creates JSONFileConfig by String path name
      * @throws IOException
      */
-    public JSONConfig(String filePath) throws IOException {
+    public JSONFileConfig(String filePath) throws IOException {
         jsonFile = new File(filePath);
         setVerbose(false);
         init();
     }
 
     /**
-     * Creates JSONConfig by File Object
+     * Creates JSONFileConfig by File Object
      * @throws IOException
      */
-    public JSONConfig(File file) throws IOException {
+    public JSONFileConfig(File file) throws IOException {
         jsonFile = file;
         setVerbose(false);
         init();
@@ -58,7 +58,7 @@ public class JSONConfig {
     }
 
     /**
-     * Get the JSONObject of the JSONConfig
+     * Get the JSONObject of the JSONFileConfig
      * @return JSONObject
      * @throws IOException
      */
@@ -190,7 +190,7 @@ public class JSONConfig {
     }
 
     /**
-     * Removes a key from the JSONConfig.
+     * Removes a key from the JSONFileConfig.
      * @param key
      * @throws IOException
      */
@@ -226,7 +226,7 @@ public class JSONConfig {
     }
 
     /**
-     * Clears the JSONConfig.
+     * Clears the JSONFileConfig.
      * @throws IOException
      */
     public void clear() throws IOException {
@@ -249,10 +249,10 @@ public class JSONConfig {
             BufferedWriter writer = new BufferedWriter(new FileWriter(jsonFile));
             writer.write(jsonObject.toString());
             writer.close();
-            verbose("Initialized JSONConfig. File was created.");
+            verbose("Initialized JSONFileConfig. File was created.");
         } else {
             load();
-            verbose("Initialized JSONConfig. File was loaded.");
+            verbose("Initialized JSONFileConfig. File was loaded.");
         }
     }
 
@@ -272,11 +272,11 @@ public class JSONConfig {
 
     private void verbose(String message) {
         if(verboseLogging){
-            System.out.println("[JSONConfig] " + message);
+            System.out.println("[JSONFileConfig] " + message);
         }
     }
 
     private static void message(String message) {
-        System.out.println("[JSONConfig] " + message);
+        System.out.println("[JSONFileConfig] " + message);
     }
 }
