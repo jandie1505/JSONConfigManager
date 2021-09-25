@@ -1,11 +1,13 @@
 package net.jandie1505.JSONConfigManager;
 
+import org.apache.commons.io.FileUtils;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.*;
 import java.math.BigDecimal;
 import java.math.BigInteger;
+import java.nio.charset.StandardCharsets;
 import java.util.Collection;
 import java.util.Map;
 
@@ -257,8 +259,7 @@ public class JSONFileConfig {
     }
 
     private JSONObject load() throws IOException {
-        BufferedReader reader = new BufferedReader(new FileReader(jsonFile));
-        JSONObject jsonObject = new JSONObject(reader.readLine());
+        JSONObject jsonObject = new JSONObject(FileUtils.readFileToString(jsonFile, StandardCharsets.UTF_8.name()));
         verbose("Loaded JSON file " + jsonFile.getPath() + ".");
         return jsonObject;
     }
