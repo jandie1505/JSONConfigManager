@@ -1,7 +1,7 @@
 # JSONConfigManager
 A config manager for json in java.
 
-## Create config manager
+## How to use
 
 ```java
 
