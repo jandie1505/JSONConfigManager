@@ -35,6 +35,9 @@ public class ConfigManager {
         writer.close();
     }
 
+    /**
+     * Reload the config from file.
+     */
     public void reloadConfig() {
         try {
             if (!this.configFile.exists()) {
@@ -65,7 +68,20 @@ public class ConfigManager {
         }
     }
 
+    /**
+     * Get a copy of the config.
+     * @return copy of config (JSONObject)
+     */
     public JSONObject getConfig() {
         return new JSONObject(this.config.toString());
+    }
+
+    /**
+     * Get the "real" config object.
+     * @return config (JSONObject)
+     */
+    @Deprecated
+    public JSONObject getRawConfig() {
+        return this.config;
     }
 }
