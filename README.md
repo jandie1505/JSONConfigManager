@@ -3,7 +3,7 @@ A config manager for json in java.
 
 ## Create config manager
 
-´´´java
+```java
 
 // JSONObject of default config values
 JSONObject defaultConfigValues;
@@ -40,4 +40,4 @@ JSONObject config = configManager.getRawConfig();
 configManager.getRawConfig().put("testInt", 0);
 configManager.getRawConfig().put("testString", "test");
 
-´´´
+```
